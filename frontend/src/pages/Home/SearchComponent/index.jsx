@@ -28,7 +28,7 @@ const SearchComponent = () => {
       <div
         className={`${
           filteredData.length === 0 ? "md:grid-cols-1" : "md:grid-cols-2"
-        } grid grid-cols-1 lg:gap-12 gap-8  lg:p-12 p-8 place-items-center `}
+        } grid grid-cols-1 lg:gap-12 gap-8  lg:p-12 p-8 place-items-center lg:w-8/12 mx-auto`}
       >
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
@@ -37,7 +37,7 @@ const SearchComponent = () => {
                 navigate(`/cards/${item.title}`);
               }}
               key={item.id}
-              className=" lg:w-[400px] w-full border rounded-xl shadow bg-[#F4F6F8] cursor-pointer"
+              className=" lg:w-[400px] h-full w-full border rounded-xl shadow bg-[#F4F6F8] cursor-pointer"
             >
               <h3 className="text-lg font-bold text-gray-800 border-b px-4 pt-4 pb-1">
                 {item.title}
@@ -48,7 +48,7 @@ const SearchComponent = () => {
             </div>
           ))
         ) : (
-          <p className="text-gray-500 text-lg">No results found</p>
+          <p className="text-gray-500 text-lg mt-20">No results found.</p>
         )}
       </div>
     </div>
