@@ -1,0 +1,52 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files and folders
+tmp/
+*.tmp
+*.swp
+
+# Build directory
+build/
+dist/
+
+# Coverage directory
+coverage/
+
+# Database files (if applicable)
+*.sqlite
+*.sqlite3
+*.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# macOS specific files
+.DS_Store
+
+# Ignore any lock files if you're using yarn or npm
+yarn.lock
+package-lock.json
+
+# pm2 process file
+pm2.log
+
+# Swagger files (if applicable)
+swagger.json
+swagger.yaml
