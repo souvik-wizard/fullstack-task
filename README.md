@@ -1,27 +1,13 @@
-# Help Center API Assignment
+# Instructions
 
-## Instructions
+Just do "npm i" in both frontend and backend.
+Start the frontend server using "npm start" and the backend using "nodemon index" or "npm start".
+Frontend port number is http://localhost:3000/ .
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/iAmritMalviya/fullstack-assignment
-   cd fullstack-assignment
-   ```
+# Questions
 
-2. **Frontend:**
-   - Create a React app in the `frontend` folder.
-   - Follow the instructions in `frontend.md` to complete the frontend.
+1.How can you implement shared functionality across a component tree?
+In React, there are several ways to implement shared functionality across a component tree. Using Context API, Prop Drilling, Redux etc. As this is a small project I've used ContextAPI instead of Redux.
 
-3. **Backend:**
-   - Create a Node.js app in the `backend` folder.
-   - Follow the `backend.md` instructions to complete the backend.
-
-4. **Push Your Work:**
-   - Push both the frontend and backend apps to the same repository.
-   - Make sure the repository is public.
-
-5. **Submit Your Work:**
-   - Paste the GitHub repository link in the Google form you received after pushing your code.
-
----
-
+2.Why is the useState hook appropriate for handling state in a complex component?
+It lets you manage and update individual pieces of state separately. This keeps your component organized and makes it easier to track changes, especially when you have multiple states interacting with each other.
