@@ -19,7 +19,7 @@ const Navbar = () => {
           onClick={() => {
             navigate("/");
           }}
-          className="flex justify-center items-center font-bold cursor-pointer"
+          className="flex justify-center items-center font-bold cursor-pointer mr-1 md:mr-0"
         >
           <img
             className="w-12"
