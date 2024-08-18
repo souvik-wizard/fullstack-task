@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
-    <footer className=" lg:flex grid grid-cols-2 justify-around w-full bg-black text-white px-8 lg:px-20 py-8 lg:h-[320px] gap-8">
+    <footer className="lg:flex grid grid-cols-2 justify-around w-full bg-black text-white px-8 lg:px-20 py-8 lg:h-[320px] gap-8">
       <div className="flex flex-col gap-4">
         <h1 className="font-bold text-lg">Abstract</h1>
         <p className="text-sm cursor-pointer">Branches</p>
@@ -43,7 +45,14 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col justify-end">
-        <img src="https://i.imgur.com/3EMvh4O.png" className="w-12" alt="" />
+        <img
+          onClick={() => {
+            navigate("/");
+          }}
+          src="https://i.imgur.com/3EMvh4O.png"
+          className="w-12 cursor-pointer"
+          alt=""
+        />
         <p>© Copyright 2022</p>
         <p>Abstract Studio Design, Inc</p>
         <p>All rights reserved</p>

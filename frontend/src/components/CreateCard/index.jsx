@@ -1,8 +1,10 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
+import React, { useState, useContext } from "react";
+import { toast } from "react-hot-toast";
+import { DataContext } from "../../contexts/DataContext.jsx"; // Import DataContext
+import PrimaryButton from "../PrimaryButton/index.js";
 
-const CreateCard = () => {
+const CreateCard = ({ onSuccess }) => {
+  const { addCard } = useContext(DataContext); // Use context
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({ title: "", description: "" });
@@ -31,17 +33,12 @@ const CreateCard = () => {
 
     setIsSubmitting(true);
     try {
-      await axios.post("http://localhost:5000/api/cards", {
-        title,
-        description,
-      });
-      toast.success("Submitted successfully!");
-      setTitle("");
-      setDescription("");
-      setErrors({ title: "", description: "" });
+      await addCard({ title, description }); // Use context to add card
+      toast.success("Card added successfully!");
+      onSuccess(false); // Close the modal or perform any other action
     } catch (err) {
       console.error(err);
-      toast.error("Something went wrong!");
+      toast.error("Failed to add card.");
     } finally {
       setIsSubmitting(false);
     }
@@ -82,15 +79,12 @@ const CreateCard = () => {
             <p className="text-red-500 text-sm">{errors.description}</p>
           )}
         </div>
-
-        <button
+        <PrimaryButton
           type="submit"
-          className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           disabled={isSubmitting}
-        >
-          {isSubmitting ? "Submitting..." : "Submit"}
-        </button>
-        <Toaster position="top-center" reverseOrder={false} />
+          label={isSubmitting ? "Submitting..." : "Submit"}
+          className="w-full text-white"
+        />
       </form>
     </div>
   );

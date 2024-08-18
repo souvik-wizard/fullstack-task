@@ -1,10 +1,10 @@
-// CardDetails.js
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import PrimaryButton from "../../components/PrimaryButton/index.js";
 
 const CardDetails = () => {
-  const { title } = useParams(); // Get title from URL
+  const { title } = useParams();
   const [card, setCard] = useState(null);
   const [notFound, setNotFound] = useState(false);
   const navigate = useNavigate();
@@ -16,9 +16,6 @@ const CardDetails = () => {
         const foundCard = response.data.cards.find(
           (item) => item.title.toLowerCase() === title.toLowerCase()
         );
-
-        console.log(foundCard);
-
         if (foundCard) {
           setCard(foundCard);
         } else {
@@ -35,15 +32,18 @@ const CardDetails = () => {
 
   if (notFound) {
     return (
-      <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Card Not Found</h2>
-        <p>The card with the title "{title}" does not exist.</p>
-        <button
-          onClick={() => navigate("/")}
-          className="mt-4 p-2 bg-blue-500 text-white rounded"
-        >
-          Go Back
-        </button>
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <div className="max-w-lg mx-auto p-6 bg-white rounded-lg border shadow">
+          <h2 className="text-2xl font-bold mb-4 text-red-500">
+            Card Not Found
+          </h2>
+          <p>The card with the title "{title}" does not exist.</p>
+          <PrimaryButton
+            onClick={() => navigate("/")}
+            label="Go Back"
+            className={" text-white mt-4 "}
+          />
+        </div>
       </div>
     );
   }
@@ -51,9 +51,11 @@ const CardDetails = () => {
   if (!card) return <div>Loading...</div>;
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">{card.title}</h2>
-      <p>{card.description}</p>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="max-w-lg mx-auto p-6 bg-white border rounded-xl shadow lg:w-[400px] w-full">
+        <h2 className="text-2xl font-bold mb-4">{card.title}</h2>
+        <p>{card.description}</p>
+      </div>
     </div>
   );
 };

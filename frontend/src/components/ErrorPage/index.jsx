@@ -1,6 +1,7 @@
 // NotFound.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import PrimaryButton from "../PrimaryButton/index.js";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -15,12 +16,11 @@ const NotFound = () => {
         <p className="text-lg text-gray-500 mt-2">
           Oops! The page you're looking for doesn't exist.
         </p>
-        <button
+        <PrimaryButton
           onClick={() => navigate("/")}
-          className="mt-6 px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md transition duration-300"
-        >
-          Go Back Home
-        </button>
+          label="Go Back Home"
+          className="mt-6 text-white"
+        />
       </div>
     </div>
   );

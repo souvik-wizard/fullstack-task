@@ -8,15 +8,15 @@ const createCard = async (req, res) => {
       description,
     });
     if (card) {
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
+        message: "Card created successfully",
         card,
       });
-      return;
     }
     res.status(200).json({
       success: false,
-      message: "Card not created",
+      message: "There was an error creating the card",
     });
   } catch (err) {
     res.json({
@@ -50,7 +50,7 @@ const getSingleCard = async (req, res) => {
   try {
     const card = await Card.findOne({ title });
     if (card) {
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         card,
       });
