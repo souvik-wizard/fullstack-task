@@ -1,11 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DataContext } from "../../../contexts/DataContext";
+import axios from "axios";
 
-const SearchComponent = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const { data } = useContext(DataContext);
+const DisplayCards = ({ searchQuery }) => {
   const navigate = useNavigate();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/cards");
+        setData(response.data.cards);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+    fetchData();
+  }, [data]);
 
   const filteredData = (data || []).filter(
     (item) =>
@@ -14,17 +25,10 @@ const SearchComponent = () => {
   );
 
   return (
-    <div className="w-full">
-      <div className="flex flex-col gap-8 items-center justify-center py-20 bg-[#DADBF0]">
-        <h1 className="lg:text-6xl text-4xl">How can we help?</h1>
-        <input
-          type="text"
-          placeholder="Search"
-          className="lg:w-1/4 w-3/4 p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
+    <>
+      <h1 className="text-4xl font-semibold mx-auto my-6">
+        Total Number of cards: {filteredData?.length}
+      </h1>
       <div
         className={`${
           filteredData.length === 0 ? "md:grid-cols-1" : "md:grid-cols-2"
@@ -34,7 +38,8 @@ const SearchComponent = () => {
           filteredData.map((item) => (
             <div
               onClick={() => {
-                navigate(`/cards/${item.title}`);
+                const encodedTitle = encodeURIComponent(item.title);
+                navigate(`/cards/${encodedTitle}`);
               }}
               key={item.id}
               className=" lg:w-[400px] h-full w-full border rounded-xl shadow bg-[#F4F6F8] cursor-pointer"
@@ -51,8 +56,8 @@ const SearchComponent = () => {
           <p className="text-gray-500 text-lg mt-20">No results found.</p>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
-export default SearchComponent;
+export default DisplayCards;

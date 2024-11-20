@@ -1,12 +1,20 @@
-import React from "react";
-import SearchBar from "./SearchComponent";
+import React, { useState } from "react";
+import SearchBar from "../../components/SearchBar";
+import DisplayCards from "../../components/DisplayCards";
 
-const Home = () => {
+const SearchComponent = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <SearchBar />
+    <div className="w-full flex flex-col min-h-screen">
+      <SearchBar handleSearch={handleSearch} />
+      <DisplayCards searchQuery={searchQuery} />
     </div>
   );
 };
 
-export default Home;
+export default SearchComponent;

@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-import { DataContext } from "../../contexts/DataContext.jsx"; // Import DataContext
 import PrimaryButton from "../PrimaryButton/index.js";
+import axios from "axios";
 
 const CreateCard = ({ onSuccess }) => {
-  const { addCard } = useContext(DataContext); // Use context
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({ title: "", description: "" });
@@ -32,8 +31,12 @@ const CreateCard = ({ onSuccess }) => {
     }
 
     setIsSubmitting(true);
+
     try {
-      await addCard({ title, description }); // Use context to add card
+      await axios.post("http://localhost:5000/api/cards", {
+        title,
+        description,
+      });
       toast.success("Card added successfully!");
       onSuccess(false); // Close the modal or perform any other action
     } catch (err) {

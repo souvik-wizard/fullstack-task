@@ -45,25 +45,26 @@ const getCards = async (req, res) => {
   }
 };
 
-const getSingleCard = async (req, res) => {
-  const { title } = req.params;
-  try {
-    const card = await Card.findOne({ title });
-    if (card) {
-      return res.status(200).json({
-        success: true,
-        card,
-      });
-    }
-    res.status(200).json({
-      message: "Card not found",
-      success: false,
-    });
-  } catch (err) {
-    res.json({
-      message: err.message,
-    });
-  }
-};
+// const getSingleCard = async (req, res) => {
+//   const { title } = req.params;
+//   console.log(title, "title");
+//   try {
+//     const card = await Card.findOne({ title });
+//     if (card) {
+//       return res.status(200).json({
+//         success: true,
+//         card,
+//       });
+//     }
+//     res.status(200).json({
+//       message: "Card not found",
+//       success: false,
+//     });
+//   } catch (err) {
+//     res.json({
+//       message: err.message,
+//     });
+//   }
+// };
 
-export { createCard, getCards, getSingleCard };
+export { createCard, getCards };

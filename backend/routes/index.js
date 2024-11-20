@@ -2,13 +2,13 @@ import { Router } from "express";
 import {
   createCard,
   getCards,
-  getSingleCard,
+  // getSingleCard,
 } from "../controllers/cardController.js";
 
 const router = Router();
 
 router.get("/cards", getCards);
 router.post("/cards", createCard);
-router.get("/cards/:title", getSingleCard);
+// router.get("/cards/:title", getSingleCard);
 
 export default router;
